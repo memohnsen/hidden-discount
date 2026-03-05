@@ -17,12 +17,18 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from "react-native-reanimated";
+import * as Clipboard from "expo-clipboard";
 
 export default function Index() {
   const [promoCode, setPromoCode] = useState("");
   const [itemCount, setItemCount] = useState(1);
   const [promoApplied, setPromoApplied] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  const copyToClipboard = async () => {
+    await Clipboard.setStringAsync("BF2025");
+    setCopied(true);
+  };
 
   const translateX = useSharedValue(0);
 
@@ -133,7 +139,7 @@ export default function Index() {
             <Text className="font-bold text-xl py-2 px-3 border border-white text-white">
               BF2025
             </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={copyToClipboard}>
               <Ionicons
                 name="copy-outline"
                 size={20}
@@ -182,7 +188,7 @@ export default function Index() {
           </View>
         )}
 
-        {copied && (
+        {copied && !promoApplied && (
           <View className="items-center justify-center w-full bg-snackbar/70 p-2 mt-4">
             <Text className="text-white font-lg font-semibold">Copied!</Text>
           </View>
