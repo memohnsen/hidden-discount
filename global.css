@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+@import 'uniwind';
+
+@layer theme {
+  :root {
+    @variant light {
+      --color-background: #ffffff;
+      --color-card-background: #f2f2f7;
+      --color-primary-text: #000000;
+    }
+    @variant dark {
+      --color-background: #000000;
+      --color-card-background: #1c1c1e;
+      --color-primary-text: #ffffff;
+    }
+  }
+}
